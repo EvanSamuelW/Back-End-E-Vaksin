@@ -1,0 +1,28 @@
+{
+    "name": "Learn-Express",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "serve": "nodemon app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.20.0",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "ejs": "^3.1.7",
+        "exceljs": "^4.3.0",
+        "express": "^4.18.1",
+        "express-ejs-layouts": "^2.5.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.3.2",
+        "multer": "^1.4.4",
+        "nodemailer": "^6.7.4",
+        "nodemon": "^2.0.16",
+        "pm2": "^5.2.0"
+    }
+}

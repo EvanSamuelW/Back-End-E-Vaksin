@@ -1,0 +1,73 @@
+const express = require('express');
+const app = express();
+
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const cors = require('cors');
+require('dotenv/config');
+
+app.use(bodyParser.urlencoded({
+    limit: "50mb",
+    extended: false
+}));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cors())
+
+app.use(express.static('Images'));
+
+
+const userroute = require('./routes/user');
+const categoryroute = require('./routes/category');
+const partnerroute = require('./routes/partner');
+const vaccineroute = require('./routes/vaccine');
+const authentication = require('./routes/authorize');
+const adminPartnerRoute = require('./routes/adminPartner');
+const detailUser = require('./routes/detailUser');
+const scheduleRoute = require('./routes/schedule');
+const dashboardRoute = require('./routes/dashboard');
+const medicRoute = require('./routes/medic');
+const transactionRoute = require('./routes/transaction');
+const questionRoute = require('./routes/question');
+const superAdminRoute = require('./routes/superAdmin');
+const testRoute = require('./routes/testResult');
+const chatRoom = require('./routes/chatRoom');
+const complainRoute = require('./routes/complain');
+
+
+
+app.use('/authentication', authentication);
+app.use('/users', userroute);
+app.use('/categories', categoryroute);
+app.use('/partners', partnerroute);
+app.use('/vaccines', vaccineroute);
+app.use('/adminPartner', adminPartnerRoute);
+app.use('/detailUser', detailUser);
+app.use('/schedules', scheduleRoute);
+app.use('/medics', medicRoute);
+app.use('/dashboard', dashboardRoute);
+app.use('/transaction', transactionRoute);
+app.use('/question', questionRoute);
+app.use('/superAdmin', superAdminRoute);
+app.use('/testResult', testRoute);
+app.use('/complain', complainRoute);
+app.use('/chatRoom', chatRoom);
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.get('/', (request, response) => {
+    response.send('it works!');
+});
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true });
+
+const connection = mongoose.connection;
+
+connection.once("open", function() {
+    console.log("MongoDB database connection established successfully");
+});
+
+
+app.listen(4000);
